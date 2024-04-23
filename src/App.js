@@ -3,9 +3,9 @@ import './App.css';
 import Graph from './Graph';
 
 function App() {
-  const [players, setPlayers] = useState([20, 20, 20, 20]);
+  const [players, setPlayers] = useState([20, 20]);
   const [turn, setTurn] = useState(0);
-  const [uncertainty, setUncertainty] = useState(20 * 20 * 20 * 20);
+  const [uncertainty, setUncertainty] = useState(20 * 20);
   const bound = 120000;
 
   const dice = [4,6,8,10,12,20]
@@ -35,7 +35,7 @@ function App() {
 
 
   const handleUncertaintyChange = (index, value) => {
-    let product = players[0] * players[1] * players[2] * players[3];
+    let product = players[0] * players[1];
     const newPlayers = [...players];
     newPlayers[index] = value;
     if (product < bound) {
@@ -46,19 +46,19 @@ function App() {
           }
         }
     }
-    product = newPlayers[0] * newPlayers[1] * newPlayers[2] * newPlayers[3];
+    product = newPlayers[0] * newPlayers[1];
     setPlayers(newPlayers);
     setUncertainty(product);
   };
 
   const nextTurn = () => {
-    setTurn((prevTurn) => (prevTurn + 1) % 4);
+    setTurn((prevTurn) => (prevTurn + 1) % 2);
   };
 
   return (
     <div className="App">
-      <h1>Game Simulator</h1>
-      <Graph players={players} uncertainty={Math.log2(uncertainty)} />
+      <h1>Quantum Heist</h1>
+      <Graph players={players} uncertainty={uncertainty} />
       <div>
         <h2>{`Player ${turn + 1}'s Turn`}</h2>
         <label htmlFor='new_uncertainity'>New Uncertainty:</label>
