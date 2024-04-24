@@ -58,7 +58,7 @@ function App() {
   return (
     <div className="App">
       <h1>Quantum Heist</h1>
-      <Graph players={players} uncertainty={uncertainty} />
+      <Graph players={players} uncertainty={Math.log2(uncertainty)} />
       <div>
         <h2>{`Player ${turn + 1}'s Turn`}</h2>
         <label htmlFor='new_uncertainity'>New Uncertainty:</label>
